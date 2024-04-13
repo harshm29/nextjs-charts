@@ -158,7 +158,7 @@ export default function Dashboard() {
                     p: 2,
                     display: "flex",
                     flexDirection: "column",
-                    height: 440,
+                    height: 840,
                   }}
                 >
                   <Chart />

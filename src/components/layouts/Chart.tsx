@@ -1,11 +1,20 @@
 "use client";
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
-import { LineChart, axisClasses } from "@mui/x-charts";
-import { ChartsTextStyle } from "@mui/x-charts/ChartsText";
+//import { LineChart, axisClasses } from "@mui/x-charts";
+
 import Title from "./Title";
 import { useGetXData, useGetYData } from "@/hooks/charts/useCharts";
-
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 export default function Chart() {
   const theme = useTheme();
 
@@ -24,7 +33,7 @@ export default function Chart() {
           const xValues = res.data.slice(0, 50);
 
           const xinfor = xValues.map((item: any) =>
-            parseFloat(item.RandomNumber)
+            parseFloat(item.RandomNumber).toFixed(2)
           );
           setXdata(xinfor);
 
@@ -44,7 +53,7 @@ export default function Chart() {
           const yValues = res.data.slice(0, 50);
 
           const yinfor = yValues.map((item: any) =>
-            parseFloat(item.RandomNumber)
+            parseFloat(item.RandomNumber).toFixed(2)
           );
           setYdata(yinfor);
 
@@ -64,11 +73,23 @@ export default function Chart() {
     GetData();
   }, []);
 
+  const [data, setData] = React.useState([]);
+
+  React.useEffect(() => {
+    const chartData: any = XData.slice(0, 50).map((xItem, index) => ({
+      x: xItem,
+      y: YData[index],
+    }));
+    setData(chartData);
+
+    console.log(chartData);
+  }, [XData, YData]);
+
   return (
     <React.Fragment>
       <Title>Today</Title>
       <div style={{ width: "100%", flexGrow: 1, overflow: "hidden" }}>
-        <LineChart
+        {/* <LineChart
           dataset={YData.map((value: any, index: any) => ({
             x: XData[index],
             y: value,
@@ -92,6 +113,9 @@ export default function Chart() {
           yAxis={[
             {
               label: "Y-Axis Label",
+              scaleType: "point",
+              data: YData,
+              dataKey: "y",
               // Use yLabels for yAxis labels
               //ticks: yLabels,
             },
@@ -114,7 +138,33 @@ export default function Chart() {
               transform: "translateX(-25px)",
             },
           }}
-        />
+        /> */}
+        <ResponsiveContainer width="100%" height={400}>
+          <LineChart data={data}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis
+              dataKey="name"
+              type="category"
+              label={{ value: "X-Axis Label", position: "insideBottom" }}
+            />
+            <YAxis
+              label={{
+                value: "Y-Axis Label",
+                angle: -90,
+                position: "insideLeft",
+              }}
+            />
+            <Tooltip />
+            <Legend />
+            <Line
+              type="monotone"
+              dataKey="x"
+              stroke="#8884d8"
+              activeDot={{ r: 8 }}
+            />
+            <Line type="monotone" dataKey="y" stroke="#82ca9d" />
+          </LineChart>
+        </ResponsiveContainer>
       </div>
     </React.Fragment>
   );

@@ -1,4 +1,5 @@
-import type { Metadata } from "next";
+"use client";
+
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
@@ -7,11 +8,6 @@ import CssBaseline from "@mui/material/CssBaseline";
 import theme from "@/components/theme";
 
 const inter = Inter({ subsets: ["latin"] });
-
-export const metadata: Metadata = {
-  title: "Login page",
-  description: "Login page",
-};
 
 export default function RootLayout({
   children,

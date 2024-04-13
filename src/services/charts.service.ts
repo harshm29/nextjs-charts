@@ -6,14 +6,13 @@ export class ChartService {
   protected readonly yuri: string;
 
   public constructor(url: string) {
-    console.log(url);
     this.instance = axios.create({
       baseURL: url,
       timeout: 30000,
       timeoutErrorMessage: "API response Time out!",
     });
-    this.xuri = process.env.API_X_SLUG || "/gDa8uC/data"; // Initialize with a default value or handle undefined case
-    this.yuri = process.env.API_Y_SLUG || "/o5zMs5/data"; // Initialize with a default value or handle undefined case
+    this.xuri = "/gDa8uC/data"; // Initialize with a default value or handle undefined case
+    this.yuri = "/o5zMs5/data"; // Initialize with a default value or handle undefined case
   }
 
   GetXData = () => {

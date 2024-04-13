@@ -1,3 +1,4 @@
+"use client";
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { LineChart, axisClasses } from "@mui/x-charts";
@@ -85,14 +86,14 @@ export default function Chart() {
               dataKey: "x",
               label: "X-Axis Label",
               // Use xLabels for xAxis labels
-              ticks: xLabels,
+              //ticks: xLabels,
             },
           ]}
           yAxis={[
             {
               label: "Y-Axis Label",
               // Use yLabels for yAxis labels
-              ticks: yLabels,
+              //ticks: yLabels,
             },
           ]}
           series={[

@@ -2,7 +2,6 @@ import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { LineChart, axisClasses } from "@mui/x-charts";
 import { ChartsTextStyle } from "@mui/x-charts/ChartsText";
-import Title from "./Title";
 
 // Generate Sales Data
 function createData(
@@ -29,7 +28,6 @@ export default function Chart() {
 
   return (
     <React.Fragment>
-      <Title>Today</Title>
       <div style={{ width: "100%", flexGrow: 1, overflow: "hidden" }}>
         <LineChart
           dataset={data}

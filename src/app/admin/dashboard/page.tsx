@@ -18,13 +18,9 @@ import Link from "@mui/material/Link";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import {
-  mainListItems,
-  secondaryListItems,
-} from "@/components/layouts/listItems";
+import { mainListItems } from "@/components/layouts/listItems";
 import Chart from "@/components/layouts/Chart";
-import Deposits from "@/components/layouts/Deposits";
-import Orders from "@/components/layouts/Orders";
+
 import Copyright from "@/components/layouts/Copyright";
 
 const drawerWidth: number = 240;
@@ -170,7 +166,7 @@ export default function Dashboard() {
               </Grid>
               {/* Recent Deposits */}
             </Grid>
-            <Copyright sx={{ pt: 4 }} />
+            <Copyright />
           </Container>
         </Box>
       </Box>
